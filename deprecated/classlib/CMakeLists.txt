@@ -90,19 +90,19 @@ add_custom_target( classaiousbcppdbg_copies DEPENDS ${classaiousbcppdbg_files} )
 
 # Requires that you have build the aiousb library first
 add_library( classaiousb ${CLASSAIOUSB_LIBRARY_TYPE}  ${classaiousbcpp_files} )
-add_library( classaiousbdbg ${CLASSAIOUSBDBG_LIBRARY_TYPE} ${classaiousbcppdbg_files} )
+#add_library( classaiousbdbg ${CLASSAIOUSBDBG_LIBRARY_TYPE} ${classaiousbcppdbg_files} )
 
 add_dependencies( classaiousb  hppaiousb_copies classaiousbcpp_copies classaiousbcppdbg_copies )
-add_dependencies( classaiousbdbg hppaiousb_copies classaiousbcpp_copies classaiousbcppdbg_copies )
+#add_dependencies( classaiousbdbg hppaiousb_copies classaiousbcpp_copies classaiousbcppdbg_copies )
 
 target_link_libraries( classaiousb ${CORELIBS} ${EXTRA_LIBS} aiousb aiousbcpp )
-target_link_libraries( classaiousbdbg ${CORELIBS} ${EXTRA_LIBS} aiousbdbg aiousbcppdbg )
+#target_link_libraries( classaiousbdbg ${CORELIBS} ${EXTRA_LIBS} aiousbdbg aiousbcppdbg )
 
 #=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 # Installation targets
 #=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 
 install( TARGETS classaiousb DESTINATION lib )
-install( TARGETS classaiousbdbg DESTINATION lib )
+#install( TARGETS classaiousbdbg DESTINATION lib )
 
 
