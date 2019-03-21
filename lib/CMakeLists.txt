@@ -15,9 +15,9 @@ set(SO_VERSION "01.00")
 # Options for building shared vs. Static libraries
 #
 OPTION(BUILD_AIOUSB_SHARED "Build the AIOUSB libraries shared." ON)
-OPTION(BUILD_AIOUSBDBG_SHARED "Build the AIOUSB Debug libraries shared." ON)
+OPTION(BUILD_AIOUSBDBG_SHARED "Build the AIOUSB Debug libraries shared." OFF)
 OPTION(BUILD_AIOUSBCPP_SHARED "Build the AIOUSB C++ libraries shared." ON)
-OPTION(BUILD_AIOUSBCPPDBG_SHARED "Build the AIOUSB C++ Debug libraries shared." ON)
+OPTION(BUILD_AIOUSBCPPDBG_SHARED "Build the AIOUSB C++ Debug libraries shared." OFF)
 
 IF(BUILD_AIOUSB_SHARED)
   SET(AIOUSB_LIBRARY_TYPE SHARED)
