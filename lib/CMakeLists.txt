@@ -9,6 +9,8 @@ cmake_minimum_required(VERSION 2.8)
 
 project( aiousblibs )
 
+set(FULL_LIBRARY_VERSION "01.00.00")
+set(SO_VERSION "01.00")
 #
 # Options for building shared vs. Static libraries
 #
@@ -127,9 +129,16 @@ add_custom_target( aiousbdbg_copies DEPENDS ${aiousbdbg_files} )
 add_custom_target( aiousbcppdbg_copies DEPENDS ${aiousbcppdbg_files} )
 
 add_library( aiousb        ${AIOUSB_LIBRARY_TYPE}       ${aiousb_files} )
+set_target_properties(aiousb PROPERTIES VERSION aiousb_${FULL_LIBRARY_VERSION} SOVERSION aiousb_${SO_VERSION})
+
 add_library( aiousbdbg     ${AIOUSBDBG_LIBRARY_TYPE}    ${aiousbdbg_files} )
+set_target_properties(aiousbdbg PROPERTIES VERSION aiousb_${FULL_LIBRARY_VERSION} SOVERSION aiousb_${SO_VERSION})
+
 add_library( aiousbcpp     ${AIOUSBCPP_LIBRARY_TYPE}    ${aiousbcpp_files}  )
+set_target_properties(aiousbcpp PROPERTIES VERSION aiousb_${FULL_LIBRARY_VERSION} SOVERSION aiousb_${SO_VERSION})
+
 add_library( aiousbcppdbg  ${AIOUSBCPPDBG_LIBRARY_TYPE} ${aiousbcppdbg_files} )
+set_target_properties(aiousbcppdbg PROPERTIES VERSION aiousb_${FULL_LIBRARY_VERSION} SOVERSION aiousb_${SO_VERSION})
 
 include_directories( "${CMAKE_CURRENT_SOURCE_DIR}" )
 # MESSAGE(STATUS "Setting include path to include '${CMAKE_CURRENT_SOURCE_DIR}'")
