@@ -18,6 +18,8 @@ option(BUILD_PHP "Build the PHP Interfaces" OFF)
 option(BUILD_DOCUMENTATION "Build the Doxygen documentation" OFF )
 option(DISABLE_TESTING "Turns off BIST on C/C++ samples" OFF )
 
+SET(PYTHON_VER 3 CACHE STRING "Build for the Python VERSION")
+
 SET(FIRMWARE_DIRECTORY /usr/share/usb CACHE PATH "Directory to install .HEX firmware files")
 SET(UDEV_DIRECTORY /etc/udev/rules.d CACHE PATH "Directory to install UDEV rules files"  )
 

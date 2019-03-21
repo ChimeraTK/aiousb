@@ -10,13 +10,13 @@ project( pythonaiousb )
 #OPTION(SPECIFY_PYTHON_INSTALL_DIRECTORY "Build the Python Interfaces" OFF)
 
 FIND_PACKAGE( SWIG REQUIRED )
-FIND_PACKAGE( PythonInterp REQUIRED )
+FIND_PACKAGE( PythonInterp ${PYTHON_VER} REQUIRED )
 INCLUDE(${SWIG_USE_FILE})
 
 #=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 # Python
 #=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
-FIND_PACKAGE( PythonLibs )
+FIND_PACKAGE( PythonLibs ${PYTHON_VER} )
 INCLUDE_DIRECTORIES( ${PYTHON_INCLUDE_PATH} )
 SET_SOURCE_FILES_PROPERTIES(AIOUSB.i PROPERTIES CPLUSPLUS OFF)
 
@@ -24,7 +24,13 @@ INCLUDE_DIRECTORIES( ${CMAKE_CURRENT_SOURCE_DIR} )
 INCLUDE_DIRECTORIES( ${CMAKE_CURRENT_SOURCE_DIR}/.. )
 SET_SOURCE_FILES_PROPERTIES(AIOUSB.i PROPERTIES SWIG_FLAGS "-I. -includeall")
 
-execute_process(COMMAND ${PYTHON_EXECUTABLE} -c "import distutils.sysconfig; print distutils.sysconfig.get_python_version()"
+if ( PYTHON_VER LESS 3)
+  SET (CMD "import distutils.sysconfig; print distutils.sysconfig.get_python_version()" CACHE STRING "Python command")
+else ( PYTHON_VER LESS 3)
+  SET (CMD "import distutils.sysconfig; print (distutils.sysconfig.get_python_version())" CACHE STRING "Python command")
+endif ( PYTHON_VER LESS 3) 
+
+execute_process(COMMAND ${PYTHON_EXECUTABLE} -c ${CMD}
   OUTPUT_VARIABLE PY_VERSION 
   RESULT_VARIABLE _res 
   OUTPUT_STRIP_TRAILING_WHITESPACE
