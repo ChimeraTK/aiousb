@@ -131,14 +131,14 @@ add_custom_target( aiousbcppdbg_copies DEPENDS ${aiousbcppdbg_files} )
 add_library( aiousb        ${AIOUSB_LIBRARY_TYPE}       ${aiousb_files} )
 set_target_properties(aiousb PROPERTIES VERSION aiousb_${FULL_LIBRARY_VERSION} SOVERSION aiousb_${SO_VERSION})
 
-#add_library( aiousbdbg     ${AIOUSBDBG_LIBRARY_TYPE}    ${aiousbdbg_files} )
-#set_target_properties(aiousbdbg PROPERTIES VERSION aiousb_${FULL_LIBRARY_VERSION} SOVERSION aiousb_${SO_VERSION})
+add_library( aiousbdbg     ${AIOUSBDBG_LIBRARY_TYPE}    ${aiousbdbg_files} )
+set_target_properties(aiousbdbg PROPERTIES VERSION aiousb_${FULL_LIBRARY_VERSION} SOVERSION aiousb_${SO_VERSION})
 
 add_library( aiousbcpp     ${AIOUSBCPP_LIBRARY_TYPE}    ${aiousbcpp_files}  )
 set_target_properties(aiousbcpp PROPERTIES VERSION aiousb_${FULL_LIBRARY_VERSION} SOVERSION aiousb_${SO_VERSION})
 
-#add_library( aiousbcppdbg  ${AIOUSBCPPDBG_LIBRARY_TYPE} ${aiousbcppdbg_files} )
-#set_target_properties(aiousbcppdbg PROPERTIES VERSION aiousb_${FULL_LIBRARY_VERSION} SOVERSION aiousb_${SO_VERSION})
+add_library( aiousbcppdbg  ${AIOUSBCPPDBG_LIBRARY_TYPE} ${aiousbcppdbg_files} )
+set_target_properties(aiousbcppdbg PROPERTIES VERSION aiousb_${FULL_LIBRARY_VERSION} SOVERSION aiousb_${SO_VERSION})
 
 include_directories( "${CMAKE_CURRENT_SOURCE_DIR}" )
 # MESSAGE(STATUS "Setting include path to include '${CMAKE_CURRENT_SOURCE_DIR}'")
@@ -147,22 +147,22 @@ set( AIOUSB_INCLUDE_DIR ${CMAKE_CURRENT_SOURCE_DIR}  )
 get_filename_component(LIBUSB_DIRECTORY ${LIBUSB_1_LIBRARIES} PATH)
 link_directories( ${LIBUSB_DIRECTORY} )
 
-#SET_TARGET_PROPERTIES( aiousbdbg PROPERTIES COMPILE_FLAGS "-DNDEBUG" )
-#SET_TARGET_PROPERTIES( aiousbcppdbg PROPERTIES COMPILE_FLAGS "-DNDEBUG" )
+SET_TARGET_PROPERTIES( aiousbdbg PROPERTIES COMPILE_FLAGS "-DNDEBUG" )
+SET_TARGET_PROPERTIES( aiousbcppdbg PROPERTIES COMPILE_FLAGS "-DNDEBUG" )
 
-#GET_TARGET_PROPERTY( FOO aiousbdbg COMPILE_FLAGS  )
-#MESSAGE(STATUS "Cflags for debug is ${FOO}")
+GET_TARGET_PROPERTY( FOO aiousbdbg COMPILE_FLAGS  )
+MESSAGE(STATUS "Cflags for debug is ${FOO}")
 
 
 target_link_libraries( aiousb ${CORELIBS} ${EXTRA_LIBS} -L${LIBUSB_DIRECTORY} )
 target_link_libraries( aiousbcpp ${CORELIBS} ${EXTRA_LIBS}  -L${LIBUSB_DIRECTORY} )
-#target_link_libraries( aiousbcppdbg ${CORELIBS} ${EXTRA_LIBS}  -L${LIBUSB_DIRECTORY} )
-#target_link_libraries( aiousbdbg ${CORELIBS} ${EXTRA_LIBS}  -L${LIBUSB_DIRECTORY} )
+target_link_libraries( aiousbcppdbg ${CORELIBS} ${EXTRA_LIBS}  -L${LIBUSB_DIRECTORY} )
+target_link_libraries( aiousbdbg ${CORELIBS} ${EXTRA_LIBS}  -L${LIBUSB_DIRECTORY} )
 
 add_dependencies( aiousb aiousb_copies )
 add_dependencies( aiousbcpp aiousbcpp_copies )
-#add_dependencies( aiousbcppdbg aiousbcppdbg_copies )
-#add_dependencies( aiousbdbg aiousbdbg_copies )
+add_dependencies( aiousbcppdbg aiousbcppdbg_copies )
+add_dependencies( aiousbdbg aiousbdbg_copies )
 
 
 #=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
@@ -233,9 +233,9 @@ endif( BUILD_MATLAB AND BUILD_AIOUSB_SHARED)
 #=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 
 install( TARGETS aiousb DESTINATION lib )
-#install( TARGETS aiousbdbg DESTINATION lib )
+install( TARGETS aiousbdbg DESTINATION lib )
 install( TARGETS aiousbcpp DESTINATION lib )
-#install( TARGETS aiousbcppdbg DESTINATION lib )
+install( TARGETS aiousbcppdbg DESTINATION lib )
 FILE( GLOB aiousb_header_files *.h )
 install( FILES ${aiousb_header_files} DESTINATION include/aiousb/ )
 
