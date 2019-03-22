@@ -18,7 +18,8 @@ endif(NOT AIOUSB_INCLUDE_DIR )
 
 project( classaiousb )
 MESSAGE(STATUS "Loading rules to build <deprecated> aiousbclasslib ")
-
+set(FULL_LIBRARY_VERSION "01.00.00")
+set(SO_VERSION "01.00")
 #=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 # Options for building shared vs. Static libraries
 #=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
@@ -74,7 +75,7 @@ foreach( tmp_cpp_file ${classaiousb_files} )
   LIST(APPEND classaiousbcpp_files ${classaiousbcpp_var} )
   LIST(APPEND classaiousbcppdbg_files ${classaiousbcppdbg_var} )
 
-
+  
   add_custom_command( OUTPUT ${classaiousbcpp_var} COMMAND ${CMAKE_COMMAND} -E copy_if_different ${tmp_cpp_file} ${classaiousbcpp_var} )
   add_custom_command( OUTPUT ${classaiousbcppdbg_var} COMMAND ${CMAKE_COMMAND} -E copy_if_different ${tmp_cpp_file} ${classaiousbcppdbg_var} )
 
@@ -90,7 +91,10 @@ add_custom_target( classaiousbcppdbg_copies DEPENDS ${classaiousbcppdbg_files} )
 
 # Requires that you have build the aiousb library first
 add_library( classaiousb ${CLASSAIOUSB_LIBRARY_TYPE}  ${classaiousbcpp_files} )
+set_target_properties(classaiousb PROPERTIES VERSION classaiousb_${FULL_LIBRARY_VERSION} SOVERSION classaiousb_${SO_VERSION})
+
 add_library( classaiousbdbg ${CLASSAIOUSBDBG_LIBRARY_TYPE} ${classaiousbcppdbg_files} )
+set_target_properties(classaiousbdbg PROPERTIES VERSION classaiousbdbg_${FULL_LIBRARY_VERSION} SOVERSION classaiousbdbg_${SO_VERSION})
 
 add_dependencies( classaiousb  hppaiousb_copies classaiousbcpp_copies classaiousbcppdbg_copies )
 add_dependencies( classaiousbdbg hppaiousb_copies classaiousbcpp_copies classaiousbcppdbg_copies )
