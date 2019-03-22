@@ -18,8 +18,7 @@ endif(NOT AIOUSB_INCLUDE_DIR )
 
 project( classaiousb )
 MESSAGE(STATUS "Loading rules to build <deprecated> aiousbclasslib ")
-set(FULL_LIBRARY_VERSION "01.00.00")
-set(SO_VERSION "01.00")
+
 #=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 # Options for building shared vs. Static libraries
 #=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-

@@ -44,6 +44,8 @@ endif()
 set(CMAKE_LEGACY_CYGWIN_WIN32 0)
 cmake_minimum_required(VERSION 2.8.9)
 
+set(FULL_LIBRARY_VERSION "01.00.00")
+set(SO_VERSION "01.00")
 
 project( AIOUSBLIBS )
 

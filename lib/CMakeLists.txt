@@ -9,8 +9,6 @@ cmake_minimum_required(VERSION 2.8)
 
 project( aiousblibs )
 
-set(FULL_LIBRARY_VERSION "01.00.00")
-set(SO_VERSION "01.00")
 #
 # Options for building shared vs. Static libraries
 #
