@@ -8,7 +8,7 @@ message( STATUS "${CMAKE_SOURCE_DIR}" )
 
 set( THIS_PROJECT "OFF" )
 
-option(BUILD_SAMPLES "Build the AIOUSB Samples" OFF)
+option(BUILD_SAMPLES "Build the AIOUSB Samples" ON)
 option(BUILD_PERL "Build the Perl Interfaces" OFF)
 option(BUILD_PYTHON "Build the Python Interfaces" OFF)
 option(BUILD_JAVA "Build the Java Interfaces" OFF)
