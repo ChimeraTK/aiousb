@@ -20,8 +20,8 @@ option(DISABLE_TESTING "Turns off BIST on C/C++ samples" OFF )
 
 SET(PYTHON_VER 3 CACHE STRING "Build for the Python VERSION")
 
-SET(FIRMWARE_DIRECTORY /usr/share/usb CACHE PATH "Directory to install .HEX firmware files")
-SET(UDEV_DIRECTORY /etc/udev/rules.d CACHE PATH "Directory to install UDEV rules files"  )
+SET(FIRMWARE_DIRECTORY ${CMAKE_INSTALL_PREFIX}/share/usb CACHE PATH "Directory to install .HEX firmware files")
+SET(UDEV_DIRECTORY ${CMAKE_INSTALL_PREFIX}/udev/rules.d CACHE PATH "Directory to install UDEV rules files"  )
 
 
 option(INSTALL_WRAPPERS_RELATIVE "Install Scripting languages in Paths relative to CMAKE_INSTALL_PREFIX" ON )
